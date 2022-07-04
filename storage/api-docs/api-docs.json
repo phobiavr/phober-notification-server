@@ -23,24 +23,18 @@
                 ],
                 "summary": "Send message to support",
                 "operationId": "supportMessage",
-                "parameters": [
-                    {
-                        "name": "subject",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "message",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "subject": "Subject",
+                                "message": "Message"
+                            }
                         }
                     }
-                ],
+                },
                 "responses": {
                     "200": {
                         "description": "ok"

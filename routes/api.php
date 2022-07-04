@@ -14,7 +14,5 @@ Route::prefix('/support')->group(function () {
   });
 });
 
-
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//  return $request->user();
-//});
+Route::get('/otp', [\App\Http\Controllers\OtpController::class, 'sendOtp']);
+Route::post('/otp', [\App\Http\Controllers\OtpController::class, 'checkOtp']);

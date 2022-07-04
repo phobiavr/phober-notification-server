@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SupportMessageRequest;
-use Response;
 
 class SupportController extends Controller
 {
@@ -15,21 +14,11 @@ class SupportController extends Controller
    *   operationId="supportMessage",
    *   tags={"Support"},
    *   security={{"auth.server": {}}},
-   *   @OA\Parameter(
-   *     name="subject",
-   *     in="query",
+   *   @OA\RequestBody(
    *     required=true,
-   *     @OA\Schema(
-   *       type="string"
-   *     )
-   *   ),
-   *   @OA\Parameter(
-   *     name="message",
-   *     in="query",
-   *     required=true,
-   *     @OA\Schema(
-   *       type="string"
-   *     )
+   *     @OA\JsonContent(
+   *       example={"subject":"Subject","message":"Message"}
+   *      )
    *   ),
    *   @OA\Response(
    *     response="200",
@@ -44,6 +33,6 @@ class SupportController extends Controller
 
       app(\NotificationChannels\Discord\Discord::class)->send('648319935961104434', $message);
 
-      return Response::json();
+      return response()->json(['message' => 'Message was sent']);
     }
 }

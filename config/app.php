@@ -183,7 +183,8 @@ return [
     App\Providers\RouteServiceProvider::class,
     App\Providers\TelescopeServiceProvider::class,
 
-    \Abdukhaligov\LaravelConfigServerClient\ConfigServerProvider::class
+    \Abdukhaligov\LaravelConfigServerClient\ConfigServerProvider::class,
+    \Abdukhaligov\LaravelForceJson\ForceJsonServiceProvider::class
   ],
 
   /*

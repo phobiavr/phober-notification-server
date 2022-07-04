@@ -34,4 +34,8 @@ return [
   'discord' => [
     'token' => env('DISCORD_TOKEN'),
   ],
+
+  'telegram-bot-api' => [
+    'token' => env('TELEGRAM_BOT_TOKEN', 'YOUR BOT TOKEN HERE')
+  ],
 ];
