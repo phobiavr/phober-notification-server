@@ -147,6 +147,14 @@ return [
     */
     'securityDefinitions' => [
       'securitySchemes' => [
+        'auth.server' => [ // Unique name of security
+          'type' => 'http',
+          'description' => 'Authorization token obtained from logging in.',
+          'name' => 'Authorization',
+          'in' => 'header',
+          'scheme' => 'bearer',
+        ],
+
         /*
          * Examples of Security schemes
         */

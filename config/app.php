@@ -171,6 +171,7 @@ return [
      */
 
     L5Swagger\L5SwaggerServiceProvider::class,
+    NotificationChannels\Discord\DiscordServiceProvider::class,
 
     /*
      * Application Service Providers...
