@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('otps', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('code', '6');
+            $table->string('code');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

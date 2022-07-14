@@ -16,6 +16,54 @@
         }
     ],
     "paths": {
+        "/otp": {
+            "get": {
+                "tags": [
+                    "OTP"
+                ],
+                "summary": "Send OTP",
+                "operationId": "sendOtp",
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    }
+                },
+                "security": [
+                    {
+                        "auth.server": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "OTP"
+                ],
+                "summary": "Check OTP",
+                "operationId": "checkOtp",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "code": "A1B2C3",
+                                "id": "1815ce18-0b4c-4d5f-ac73-a3b4aba36553"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    }
+                },
+                "security": [
+                    {
+                        "auth.server": []
+                    }
+                ]
+            }
+        },
         "/support/message": {
             "post": {
                 "tags": [
