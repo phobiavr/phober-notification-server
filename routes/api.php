@@ -9,10 +9,12 @@ Route::middleware('auth.server')->get('/', function () {
 });
 
 Route::prefix('/support')->group(function () {
-  Route::middleware('auth.server')->group(function (){
+  Route::middleware('auth.server')->group(function () {
     Route::post('/message', [\App\Http\Controllers\SupportController::class, 'message']);
   });
 });
 
-Route::get('/otp', [\App\Http\Controllers\OtpController::class, 'sendOtp']);
-Route::post('/otp', [\App\Http\Controllers\OtpController::class, 'checkOtp']);
+Route::prefix('/otp')->group(function () {
+  Route::post('/generate', [\App\Http\Controllers\OtpController::class, 'generateOtp']);
+  Route::post('/validate', [\App\Http\Controllers\OtpController::class, 'validateOtp']);
+});

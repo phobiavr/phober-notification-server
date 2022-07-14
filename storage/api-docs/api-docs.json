@@ -16,38 +16,22 @@
         }
     ],
     "paths": {
-        "/otp": {
-            "get": {
-                "tags": [
-                    "OTP"
-                ],
-                "summary": "Send OTP",
-                "operationId": "sendOtp",
-                "responses": {
-                    "200": {
-                        "description": "ok"
-                    }
-                },
-                "security": [
-                    {
-                        "auth.server": []
-                    }
-                ]
-            },
+        "/otp/generate": {
             "post": {
                 "tags": [
                     "OTP"
                 ],
-                "summary": "Check OTP",
-                "operationId": "checkOtp",
+                "summary": "Generate OTP",
+                "operationId": "generateOtp",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {},
                             "example": {
-                                "code": "A1B2C3",
-                                "id": "1815ce18-0b4c-4d5f-ac73-a3b4aba36553"
+                                "identifier": "service1-test@gmail.com",
+                                "digits": 6,
+                                "validity": 10
                             }
                         }
                     }
@@ -56,12 +40,33 @@
                     "200": {
                         "description": "ok"
                     }
-                },
-                "security": [
-                    {
-                        "auth.server": []
+                }
+            }
+        },
+        "/otp/validate": {
+            "post": {
+                "tags": [
+                    "OTP"
+                ],
+                "summary": "Validate OTP",
+                "operationId": "validatgeOtp",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "identifier": "service1-test@gmail.com",
+                                "token": "123456"
+                            }
+                        }
                     }
-                ]
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    }
+                }
             }
         },
         "/support/message": {

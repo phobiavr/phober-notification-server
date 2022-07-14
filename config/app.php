@@ -173,6 +173,10 @@ return [
     L5Swagger\L5SwaggerServiceProvider::class,
     NotificationChannels\Discord\DiscordServiceProvider::class,
 
+    \Abdukhaligov\LaravelConfigServerClient\ConfigServerProvider::class,
+    \Abdukhaligov\LaravelForceJson\ForceJsonServiceProvider::class,
+    \Abdukhaligov\LaravelOtp\OtpServiceProvider::class,
+
     /*
      * Application Service Providers...
      */
@@ -182,9 +186,6 @@ return [
     App\Providers\EventServiceProvider::class,
     App\Providers\RouteServiceProvider::class,
     App\Providers\TelescopeServiceProvider::class,
-
-    \Abdukhaligov\LaravelConfigServerClient\ConfigServerProvider::class,
-    \Abdukhaligov\LaravelForceJson\ForceJsonServiceProvider::class
   ],
 
   /*
