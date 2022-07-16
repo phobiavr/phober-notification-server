@@ -4,6 +4,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * ValidateOtpRequest class
+ * @package App\Http\Requests
+ *
+ * @property string $identifier
+ * @property string $token
+ */
 class ValidateOtpRequest extends FormRequest
 {
   /**

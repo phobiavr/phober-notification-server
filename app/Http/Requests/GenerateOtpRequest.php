@@ -4,6 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * GenerateOtpRequest class
+ * @package App\Http\Requests
+ *
+ * @property string $identifier
+ * @property string $digits
+ * @property string $validity
+ */
 class GenerateOtpRequest extends FormRequest
 {
   /**

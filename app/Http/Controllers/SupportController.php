@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SupportMessageRequest;
+use OpenApi\Annotations as OA;
 
 class SupportController extends Controller
 {
@@ -13,7 +14,6 @@ class SupportController extends Controller
    *   summary="Send message to support",
    *   operationId="supportMessage",
    *   tags={"Support"},
-   *   security={{"auth.server": {}}},
    *   @OA\RequestBody(
    *     required=true,
    *     @OA\JsonContent(
@@ -26,13 +26,14 @@ class SupportController extends Controller
    *   )
    * )
    */
-    public function message(SupportMessageRequest $request) {
-      $message = [
-        "content" => "Subject: " . $request->subject. " \nMessage: " . $request->message,
-      ];
+  public function message(SupportMessageRequest $request)
+  {
+    $message = [
+      "content" => "Subject: " . $request->subject . " \nMessage: " . $request->message,
+    ];
 
-      app(\NotificationChannels\Discord\Discord::class)->send('648319935961104434', $message);
+    app(\NotificationChannels\Discord\Discord::class)->send('648319935961104434', $message);
 
-      return response()->json(['message' => 'Message was sent']);
-    }
+    return response()->json(['message' => 'Message was sent']);
+  }
 }

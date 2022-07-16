@@ -4,6 +4,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * SupportMessageRequest class
+ * @package App\Http\Requests
+ *
+ * @property string $subject
+ * @property string $message
+ */
 class SupportMessageRequest extends FormRequest
 {
     /**

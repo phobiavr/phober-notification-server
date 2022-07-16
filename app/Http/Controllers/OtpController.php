@@ -30,9 +30,9 @@ class OtpController extends Controller
    */
   public function generateOtp(GenerateOtpRequest $request)
   {
-    $identifier = $request->input('identifier');
-    $digits = $request->input('digits');
-    $validity = $request->input('validity');
+    $identifier = $request->identifier;
+    $digits = $request->digits;
+    $validity = $request->validity;
 
     $token = Otp::generate($identifier, $digits, $validity);
 
@@ -64,8 +64,8 @@ class OtpController extends Controller
    */
   public function validateOtp(ValidateOtpRequest $request)
   {
-    $identifier = $request->input('identifier');
-    $token = $request->input('token');
+    $identifier = $request->identifier;
+    $token = $request->token;
 
     $valid = Otp::validate($identifier, $token);
 

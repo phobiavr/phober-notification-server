@@ -9,9 +9,7 @@ Route::middleware('auth.server')->get('/', function () {
 });
 
 Route::prefix('/support')->group(function () {
-  Route::middleware('auth.server')->group(function () {
-    Route::post('/message', [\App\Http\Controllers\SupportController::class, 'message']);
-  });
+  Route::post('/message', [\App\Http\Controllers\SupportController::class, 'message']);
 });
 
 Route::prefix('/otp')->group(function () {
