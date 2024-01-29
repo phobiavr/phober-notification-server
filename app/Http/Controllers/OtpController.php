@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Abdukhaligov\LaravelOTP\OtpFacade as Otp;
 use App\Http\Requests\GenerateOtpRequest;
 use App\Http\Requests\ValidateOtpRequest;
-use NotificationChannels\Telegram\Telegram;
-use OpenApi\Annotations as OA;
+use App\Models\Channel;
+use App\Models\Message;
+use App\Models\Provider;
 
 class OtpController extends Controller
 {
@@ -35,11 +36,9 @@ class OtpController extends Controller
     $validity = $request->validity;
 
     $token = Otp::generate($identifier, $digits, $validity);
+    $message = 'OTP: ' . $token;
 
-    app(Telegram::class)->sendMessage([
-      'chat_id' => '-1001713564048',
-      'text' => 'OTP: ' . $token
-    ]);
+    Message::send(Provider::TELEGRAM, Channel::OTP, $message);
 
     return response()->json(['message' => 'OTP created successfully']);
   }

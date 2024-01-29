@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SupportMessageRequest;
-use OpenApi\Annotations as OA;
+use App\Models\Channel;
+use App\Models\Message;
+use App\Models\Provider;
 
 class SupportController extends Controller
 {
@@ -28,11 +30,9 @@ class SupportController extends Controller
    */
   public function message(SupportMessageRequest $request)
   {
-    $message = [
-      "content" => "Subject: " . $request->subject . " \nMessage: " . $request->message,
-    ];
+    $message = "Subject: " . $request->subject . " \nMessage: " . $request->message;
 
-    app(\NotificationChannels\Discord\Discord::class)->send('648319935961104434', $message);
+    Message::send(Provider::TELEGRAM, Channel::SUPPORT, $message);
 
     return response()->json(['message' => 'Message was sent']);
   }
