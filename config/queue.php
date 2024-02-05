@@ -71,6 +71,10 @@ return [
       'after_commit' => false,
     ],
 
+    'rabbitmq' => [
+      'driver' => 'rabbitmq',
+      ],
+
   ],
 
   /*
