@@ -119,12 +119,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Abdukhaligov/laravel-otp.git",
-                "reference": "8efa362744f886ae97fe9867aeb12f1ecc9fb315"
+                "reference": "e1f4f674cbb3cbe44ce82120e0d84a7cf1b0843a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Abdukhaligov/laravel-otp/zipball/8efa362744f886ae97fe9867aeb12f1ecc9fb315",
-                "reference": "8efa362744f886ae97fe9867aeb12f1ecc9fb315",
+                "url": "https://api.github.com/repos/Abdukhaligov/laravel-otp/zipball/e1f4f674cbb3cbe44ce82120e0d84a7cf1b0843a",
+                "reference": "e1f4f674cbb3cbe44ce82120e0d84a7cf1b0843a",
                 "shasum": ""
             },
             "require": {
@@ -171,7 +171,7 @@
                 "issues": "https://github.com/Abdukhaligov/laravel-otp/issues",
                 "source": "https://github.com/Abdukhaligov/laravel-otp/tree/master"
             },
-            "time": "2022-07-14T20:51:26+00:00"
+            "time": "2024-02-05T01:30:35+00:00"
         },
         {
             "name": "brick/math",
