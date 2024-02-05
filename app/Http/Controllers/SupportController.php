@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SupportMessageRequest;
+use App\Jobs\SendMessageJob;
 use App\Models\Channel;
-use App\Models\Message;
 use App\Models\Provider;
 
 class SupportController extends Controller
@@ -32,8 +32,8 @@ class SupportController extends Controller
   {
     $message = "Subject: " . $request->subject . " \nMessage: " . $request->message;
 
-    Message::send(Provider::TELEGRAM, Channel::SUPPORT, $message);
+    SendMessageJob::dispatch(Provider::DISCORD, Channel::SUPPORT, $message);
 
-    return response()->json(['message' => 'Message was sent']);
+    return response()->json(['message' => 'Message was scheduled for sending']);
   }
 }

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Abdukhaligov\LaravelOTP\OtpFacade as Otp;
 use App\Http\Requests\GenerateOtpRequest;
 use App\Http\Requests\ValidateOtpRequest;
+use App\Jobs\SendMessageJob;
 use App\Models\Channel;
-use App\Models\Message;
 use App\Models\Provider;
 
 class OtpController extends Controller
@@ -38,9 +38,9 @@ class OtpController extends Controller
     $token = Otp::generate($identifier, $digits, $validity);
     $message = 'OTP: ' . $token;
 
-    Message::send(Provider::TELEGRAM, Channel::OTP, $message);
+    SendMessageJob::dispatch(Provider::TELEGRAM, Channel::OTP, $message);
 
-    return response()->json(['message' => 'OTP created successfully']);
+    return response()->json(['message' => 'OTP generation request accepted']);
   }
 
   /**

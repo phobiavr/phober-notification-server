@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Abdukhaligov\LaravelOTP\Otp;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Telescope\Telescope;
 
@@ -13,6 +14,7 @@ class AppServiceProvider extends ServiceProvider {
    */
   public function register() {
     Telescope::ignoreMigrations();
+    Otp::ignoreMigrations();
   }
 
   /**
