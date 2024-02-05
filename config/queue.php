@@ -70,11 +70,6 @@ return [
       'block_for' => null,
       'after_commit' => false,
     ],
-
-    'rabbitmq' => [
-      'driver' => 'rabbitmq',
-      ],
-
   ],
 
   /*
