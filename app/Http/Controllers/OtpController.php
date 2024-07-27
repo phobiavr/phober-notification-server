@@ -64,7 +64,7 @@ class OtpController extends Controller
   public function validateOtp(ValidateOtpRequest $request)
   {
     $identifier = $request->identifier;
-    $token = $request->token;
+    $token = strtoupper($request->token);
 
     $valid = Otp::validate($identifier, $token);
 
