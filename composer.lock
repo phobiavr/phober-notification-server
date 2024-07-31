@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e1655c1f61994ea94dc1ffe9471d9ee",
+    "content-hash": "019239dfb66cb4659bb528d554cb8ae4",
     "packages": [
         {
             "name": "abdukhaligov/laravel-config-server-client",
@@ -3921,6 +3921,40 @@
                 }
             ],
             "time": "2024-04-27T21:32:50+00:00"
+        },
+        {
+            "name": "shared/package",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./shared",
+                "reference": "b2234872c425ffa94c774e66476f85be4a36abec"
+            },
+            "require": {
+                "laravel/framework": "*",
+                "php": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shared\\Package\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abdukhaligov Hikmat",
+                    "email": "hikmat.pou@gmail.com",
+                    "homepage": "https://github.com/Abdukhaligov",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The package for shared classes and functions between the microservices",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "swagger-api/swagger-ui",
@@ -9102,7 +9136,8 @@
     "stability-flags": {
         "abdukhaligov/laravel-config-server-client": 20,
         "abdukhaligov/laravel-force-json": 20,
-        "abdukhaligov/laravel-otp": 20
+        "abdukhaligov/laravel-otp": 20,
+        "shared/package": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -4,6 +4,12 @@
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
+    "repositories": [
+      {
+        "type": "path",
+        "url": "./shared"
+      }
+    ],
     "require": {
         "php": "^8.0.2",
         "abdukhaligov/laravel-config-server-client": "dev-master",
@@ -16,7 +22,8 @@
         "laravel/framework": "^9.2",
         "laravel/telescope": "^4.8",
         "laravel/tinker": "^2.7",
-        "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.3"
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.3",
+        "shared/package": "dev-main"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
