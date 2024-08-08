@@ -35,7 +35,7 @@ class OtpController extends Controller
     $digits = $request->digits;
     $validity = $request->validity;
 
-    $token = Otp::generate($identifier, $digits, $validity);
+    $token = Otp::generate($identifier, $digits, $validity, onlyDigits: true);
     $message = 'OTP: ' . $token;
 
     SendMessageJob::dispatch(Provider::TELEGRAM, Channel::OTP, $message);
