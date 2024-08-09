@@ -178,7 +178,6 @@ return [
     L5Swagger\L5SwaggerServiceProvider::class,
     NotificationChannels\Discord\DiscordServiceProvider::class,
 
-    \Abdukhaligov\LaravelConfigServerClient\ConfigServerProvider::class,
     \Abdukhaligov\LaravelOtp\OtpServiceProvider::class,
     \Shared\SharedServiceProvider::class,
 
