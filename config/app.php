@@ -179,9 +179,8 @@ return [
     NotificationChannels\Discord\DiscordServiceProvider::class,
 
     \Abdukhaligov\LaravelConfigServerClient\ConfigServerProvider::class,
-    \Abdukhaligov\LaravelForceJson\ForceJsonServiceProvider::class,
     \Abdukhaligov\LaravelOtp\OtpServiceProvider::class,
-    \Shared\Package\PackageProvider::class,
+    \Shared\SharedServiceProvider::class,
 
     /*
      * Application Service Providers...
