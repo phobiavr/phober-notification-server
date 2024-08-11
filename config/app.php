@@ -17,8 +17,6 @@ return [
 
   'name' => env('APP_NAME', 'Laravel'),
 
-  'auth_server' => env('AUTH_SERVER', 'http://localhost:8888/'),
-
   'discord_support_channel' => env('DISCORD_SUPPORT_CHANNEL', ''),
   'discord_otp_channel' => env('DISCORD_OTP_CHANNEL', ''),
   'telegram_otp_channel' => env('TELEGRAM_OTP_CHANNEL', ''),
