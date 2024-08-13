@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SupportMessageRequest;
 use App\Jobs\SendMessageJob;
 use App\Models\Channel;
 use App\Models\Provider;

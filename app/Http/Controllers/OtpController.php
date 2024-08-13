@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Abdukhaligov\LaravelOTP\OtpFacade as Otp;
-use App\Http\Requests\GenerateOtpRequest;
-use App\Http\Requests\ValidateOtpRequest;
 use App\Jobs\SendMessageJob;
 use App\Models\Channel;
 use App\Models\Provider;
