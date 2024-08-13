@@ -9,95 +9,56 @@ use App\Jobs\SendMessageJob;
 use App\Models\Channel;
 use App\Models\Provider;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 
-class OtpController extends Controller
-{
-  /**
-   * @OA\Post(
-   *   path="/otp/generate",
-   *   summary="Generate OTP",
-   *   operationId="generateOtp",
-   *   tags={"OTP"},
-   *   @OA\RequestBody(
-   *     required=true,
-   *     @OA\JsonContent(
-   *       example={"identifier": "service1-test@gmail.com", "digits": 6, "validity": 10}
-   *      )
-   *   ),
-   *   @OA\Response(
-   *     response="200",
-   *     description="ok",
-   *   )
-   * )
-   */
-  public function generateOtp(GenerateOtpRequest $request): JsonResponse
-  {
-    $identifier = $request->identifier;
-    $digits = $request->digits;
-    $validity = $request->validity;
+class OtpController extends BaseController {
+    public function generateOtp(Request $request): JsonResponse {
+        $identifier = $request->get('identifier');
+        $digits = $request->get('digits');
+        $validity = $request->get('validity');
 
-    $token = \Otp::generate($identifier, $digits, $validity, onlyDigits: true);
-    $message = 'OTP: ' . $token;
+        $token = Otp::generate($identifier, $digits, $validity, onlyDigits: true);
+        $message = 'OTP: ' . $token;
 
-    SendMessageJob::dispatch(Provider::TELEGRAM, Channel::OTP, $message);
+        SendMessageJob::dispatch(Provider::TELEGRAM, Channel::OTP, $message);
 
-    return response()->json(['message' => 'OTP generation request accepted']);
-  }
-
-  /**
-   * @OA\Post(
-   *   path="/otp/validate",
-   *   summary="Validate OTP",
-   *   operationId="validatgeOtp",
-   *   tags={"OTP"},
-   *   @OA\RequestBody(
-   *     required=true,
-   *     @OA\JsonContent(
-   *       example={"identifier": "service1-test@gmail.com", "token": "123456"}
-   *      )
-   *   ),
-   *   @OA\Response(
-   *     response="200",
-   *     description="ok",
-   *   )
-   * )
-   */
-  public function validateOtp(ValidateOtpRequest $request): JsonResponse
-  {
-    $identifier = $request->identifier;
-    $token = strtoupper($request->token);
-
-    $valid = app('otp')::validate($identifier, $token);
-
-    if (!$valid) {
-      return response()->json(['message' => 'OTP is invalid'], 400);
+        return response()->json(['message' => 'OTP generation request accepted']);
     }
 
-    return response()->json(['message' => 'OTP validated successfully']);
-  }
+    public function validateOtp(Request $request): JsonResponse {
+        $identifier = $request->get('identifier');
+        $token = strtoupper($request->get('token'));
 
-  public function submitOtp(ValidateOtpRequest $request): JsonResponse
-  {
-    $identifier = $request->identifier;
-    $token = strtoupper($request->token);
+        $valid = Otp::validate($identifier, $token);
 
-    $valid = Otp::submit($identifier, $token);
+        if (!$valid) {
+            return response()->json(['message' => 'OTP is invalid'], 400);
+        }
 
-    if (!$valid) {
-      return response()->json(['message' => 'OTP is invalid'], 400);
+        return response()->json(['message' => 'OTP validated successfully']);
     }
 
-    return response()->json(['message' => 'OTP submitted successfully']);
-  }
+    public function submitOtp(Request $request): JsonResponse {
+        $identifier = $request->get('identifier');
+        $token = strtoupper($request->get('token'));
 
-  public function checkSubmitted(string $identifier): JsonResponse
-  {
-    $valid = Otp::checkSubmitted($identifier);
+        $valid = Otp::submit($identifier, $token);
 
-    if (!$valid) {
-      return response()->json(['message' => 'OTP is not submitted'], 400);
+        if (!$valid) {
+            return response()->json(['message' => 'OTP is invalid'], 400);
+        }
+
+        return response()->json(['message' => 'OTP submitted successfully']);
     }
 
-    return response()->json(['message' => 'OTP validated successfully']);
-  }
+    public function checkSubmitted(string $identifier): JsonResponse {
+        $valid = Otp::checkSubmitted($identifier);
+
+        if (!$valid) {
+            return response()->json(['message' => 'OTP is not submitted'], 400);
+        }
+
+        return response()->json(['message' => 'OTP validated successfully']);
+    }
 }

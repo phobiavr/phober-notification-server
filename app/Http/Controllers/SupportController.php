@@ -6,34 +6,17 @@ use App\Http\Requests\SupportMessageRequest;
 use App\Jobs\SendMessageJob;
 use App\Models\Channel;
 use App\Models\Provider;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 
-class SupportController extends Controller
-{
+class SupportController extends BaseController {
+    public function message(Request $request): JsonResponse {
+        $message = "Subject: " . e($request->get('subject')) .
+            " \nMessage: " . e($request->get('message'));
 
-  /**
-   * @OA\Post (
-   *   path="/support/message",
-   *   summary="Send message to support",
-   *   operationId="supportMessage",
-   *   tags={"Support"},
-   *   @OA\RequestBody(
-   *     required=true,
-   *     @OA\JsonContent(
-   *       example={"subject":"Subject","message":"Message"}
-   *      )
-   *   ),
-   *   @OA\Response(
-   *     response="200",
-   *     description="ok",
-   *   )
-   * )
-   */
-  public function message(SupportMessageRequest $request)
-  {
-    $message = "Subject: " . $request->subject . " \nMessage: " . $request->message;
+        SendMessageJob::dispatch(Provider::DISCORD, Channel::SUPPORT, $message);
 
-    SendMessageJob::dispatch(Provider::DISCORD, Channel::SUPPORT, $message);
-
-    return response()->json(['message' => 'Message was scheduled for sending']);
-  }
+        return response()->json(['message' => 'Message was scheduled for sending']);
+    }
 }
