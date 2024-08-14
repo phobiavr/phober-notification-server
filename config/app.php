@@ -161,16 +161,10 @@ return [
         /*
          * Package Service Providers...
          */
-
         NotificationChannels\Discord\DiscordServiceProvider::class,
         NotificationChannels\Telegram\TelegramServiceProvider::class,
         \Abdukhaligov\LaravelOtp\OtpServiceProvider::class,
         \Shared\SharedServiceProvider::class,
-
-        /*
-         * Application Service Providers...
-         */
-        App\Providers\AppServiceProvider::class,
     ],
 
     /*
