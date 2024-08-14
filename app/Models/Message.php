@@ -4,22 +4,24 @@ namespace App\Models;
 
 use NotificationChannels\Discord\Discord;
 use NotificationChannels\Telegram\Telegram;
+use Shared\Notification\Channel;
+use Shared\Notification\Provider;
 
 class Message {
-    public static function send(Provider $provider, Channel $channel, string $message): void {
-        if ($provider === Provider::TELEGRAM) {
+    public static function send(string $provider, string $channel, string $message): void {
+        if ($provider === Provider::TELEGRAM->value) {
             app(Telegram::class)->sendMessage([
                 'chat_id' => self::getChannelId($channel, $provider),
                 'text'    => $message
             ]);
-        } elseif ($provider === Provider::DISCORD) {
+        } elseif ($provider === Provider::DISCORD->value) {
             app(Discord::class)->send(
                 self::getChannelId($channel, $provider),
                 ["content" => $message]);
         }
     }
 
-    private static function getChannelId(Channel $channel, Provider $provider) {
+    private static function getChannelId(string $channel, string $provider) {
         $channelConfig = [
             Provider::TELEGRAM->value => [
                 Channel::SUPPORT->value => config('app.telegram_support_channel'),
@@ -31,9 +33,6 @@ class Message {
             ],
         ];
 
-        $providerKey = $provider->value;
-        $channelKey = $channel->value;
-
-        return $channelConfig[$providerKey][$channelKey] ?? null;
+        return $channelConfig[$provider][$channel] ?? null;
     }
 }

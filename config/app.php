@@ -163,7 +163,6 @@ return [
          */
         NotificationChannels\Discord\DiscordServiceProvider::class,
         NotificationChannels\Telegram\TelegramServiceProvider::class,
-        \Abdukhaligov\LaravelOtp\OtpServiceProvider::class,
         \Shared\SharedServiceProvider::class,
     ],
 
