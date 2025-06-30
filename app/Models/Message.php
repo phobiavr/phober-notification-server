@@ -11,12 +11,12 @@ class Message {
     public static function send(string $provider, string $channel, string $message): void {
         if ($provider === NotificationProvider::TELEGRAM->value) {
             app(Telegram::class)->sendMessage([
-                'chat_id' => self::getChannelId($channel, $provider),
+                'chat_id' => self::getChannelId($channel, $provider) ?? $channel,
                 'text'    => $message
             ]);
         } elseif ($provider === NotificationProvider::DISCORD->value) {
             app(Discord::class)->send(
-                self::getChannelId($channel, $provider),
+                self::getChannelId($channel, $provider) ?? $channel,
                 ["content" => $message]);
         }
     }
