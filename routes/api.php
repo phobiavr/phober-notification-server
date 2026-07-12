@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Requests\SendMessageRequest;
 use App\Jobs\SendMessageJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -7,8 +8,9 @@ use Illuminate\Support\Facades\Storage;
 use Phobiavr\PhoberLaravelCommon\Clients\AuthClient;
 use Phobiavr\PhoberLaravelCommon\Enums\NotificationProvider;
 
-Route::post('/', function (Request $request) {
-    SendMessageJob::dispatch($request->provider, $request->channel, $request->message);
+Route::post('/', function (SendMessageRequest $request) {
+    $payload = $request->payload();
+    SendMessageJob::dispatch($payload->provider->value, $payload->channel->value, $payload->message);
 
     return response()->json(['message' => 'Message was scheduled for sending']);
 });
